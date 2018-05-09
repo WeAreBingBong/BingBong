@@ -1,0 +1,9 @@
+@charset "UTF-8";
+/* CSS Document */
+.bar-search .searchbar{
+	width: 95%;
+}
+
+.bar-search .searchbutton{
+	width: 3%;
+}
