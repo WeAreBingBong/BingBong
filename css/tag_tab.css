@@ -1,11 +1,11 @@
 @charset "UTF-8";
 /* CSS Document */
 .bar-search .searchbar{
-	width: 95%;
+	width: 90%;
 }
 
 .bar-search .searchbutton{
-	width: 3%;
+	width: 5%;
 }
 .box{
 	margin : 10px;
