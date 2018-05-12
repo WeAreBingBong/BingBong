@@ -4,7 +4,103 @@ var tags= [];
 
 var database;
 var dishes;
+
+function searchtags(){
+	document.getElementById("elements").innerHTML = "";
+	dishes.on('value',function(snapshot){
+		 
+		snapshot.forEach(function(child){
+				//console.log(child.val().Hashtags);
+				var flag = 0;
+				var toprank = ["","",""];
+				for(var obj in child.val().Hashtags)
+				{
+					//console.log(child.val().Hashtags[obj]);
+						for(var element in child.val().Hashtags[obj])
+						{
+							//console.log(element);
+							for(var i=0;i<tags.length;i++)
+								{
+									//console.log(tags[i]);
+									
+									if(element == tags[i])
+										{
+											flag++;
+										}
+									
+								}
+							if(toprank[0] == "")
+							{
+								toprank[0] = element;
+									
+							}
+							else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[0]])
+								{
+									var tmp = toprank[0];
+									toprank[0] = element;
+									toprank[2] = toprank[1];
+									toprank[1] = tmp;
+								}
+							else
+							{
+								if(toprank[1] == "")
+								{
+									toprank[1] = element;
+									
+								}
+								else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[1]])
+								{
+									var tmp = toprank[1];
+									toprank[1] = element;
+									toprank[2] = tmp;
+
+								}
+								else
+								{
+									if(toprank[2] == "")
+									{
+										toprank[2] = element;
+									
+									}
+									else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[2]])
+									{
+										
+										toprank[2] = element;
+									}
+								}
+							}
+						}
+				}
+			if(flag == tags.length && flag!= 0)
+			{
+				var buttons = "";
+				for(var i=0;i<tags.length;i++)
+					{
+						buttons += '<button>' + tags[i]+ '</button>&nbsp';
+					}
+				//console.log(child.val().image);
+				// Adding Hashtag
+				var hashtagbutton = '&nbsp<div class = "pannel panel-info" style="margin-top: 2px;margin-bottom: 2px; margin-right: 2px; margin-left: 10px; border:1px solid #bce8f1; border-radius: 5px;" ><div class = "panel-heading"><h4>'+child.key+'</h3></div><div class = "panel-body"><img src='+child.val().image +' width="150" class = "pull-left"><div class = "container" ><h4 class = "make-margin">Searching Hashtags </h4><div class = "make-margin">' +buttons +'</div></div>';
+				
+				// Adding Top Rank Hashtag
+				var buttons2=""
+				var toprankbutton="";
+				for(var i=0;i<3;i++)
+					{
+						if(toprank[i] != "")
+							{
+								buttons2 += '<button>' + toprank[i]+ '</button>&nbsp';
+							}
+					}
+				toprankbutton = '<div class = "container" ><h4 class = "make-margin">Top Rank Hashtags </h5><div class = "make-margin">' +buttons2 +'</div></div></div></div>';
+				document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+ hashtagbutton+toprankbutton;
+				
+			}
+			});
+		});
+}
 // Initialize Firebase
+
 $(document).ready(function(){
   var config = {
     apiKey: "AIzaSyDm03A2zOboq6VbKBq4QC2e1xiTsc4ADjg",
@@ -13,8 +109,8 @@ $(document).ready(function(){
   firebase.initializeApp(config);
   database = firebase.database();
 	dishes = database.ref();
+	searchtags();
 });
-
 
 
 var search_button  = document.getElementById("searchbutton");
@@ -36,6 +132,7 @@ function answerclick(value)
 
 		paragraph.innerHTML = paragraph.innerHTML + "&nbsp"+ '<button class="tagb">' + value +"&nbsp"+ '<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
 	}
+	searchtags();
 }
 
 document.getElementById("input1").onclick = function(){
@@ -52,10 +149,6 @@ function deleted(node1){
         }
     }
 	node1.parentNode.removeChild(node1);
+	searchtags();
 }
 searchtags();
-function searchtags(){
-	dishes.once('value',function(snapshot){
-		console.log(snapshot.val());
-	});
-}
