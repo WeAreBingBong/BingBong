@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -20,14 +21,13 @@
 </head>
 
 <body>
-	<header class="bar bar-nav">
+	<header class="bar bar-nav"><button type="button" class="btn btn-default navbar-btn pull-left box"> <span class="glyphicon glyphicon-chevron-left"></span> </button>
 		<h1 class="title">BingBong's Menu</h1>
-		<button type="button" class="btn btn-default navbar-btn pull-left box"> <span class="glyphicon glyphicon-chevron-left"></span> </button>
 	</header>
 	
 <nav class="bar bar-nav bar-header-secondary bar-search">
 	<input class = "searchbar pull-left" type="search" placeholder="Hashtag">
-  <a class="icon fa fa-plus searchbutton pull-right"></a>
+  <a class="icon fa fa-search-plus searchbutton pull-right"></a>
 </nav>
 
 <div class = "content">
@@ -40,18 +40,19 @@
 
 
 <nav class="bar bar-tab">
-  <a class="tab-item" href="#">
+  <a class="tab-item" href="index.html">
     <div>
-    	<img class="icon" src="https://png.icons8.com/ios/50/000000/meal.png">
+    	<span class="icon fas fa-utensils"></span>
 	  </div>
     <span class="tab-label">Search</span>
   </a>
-  <a class="tab-item active" href="#">
+  <a class="tab-item active" href="tag_tab.html">
 	<div>
     <span class="icon fa fa-hashtag"></span>
 	  </div>
     <span class="tab-label">Hashtag</span>
   </a>
+	
 </nav>
     
 </body>
