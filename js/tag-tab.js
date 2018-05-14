@@ -11,7 +11,7 @@ function searchtags(){
 		 
 		snapshot.forEach(function(child){
 				//console.log(child.val().Hashtags);
-				var flag = 0;
+				var flag =  [];
 				var toprank = ["","",""];
 				for(var obj in child.val().Hashtags)
 				{
@@ -23,9 +23,9 @@ function searchtags(){
 								{
 									//console.log(tags[i]);
 									
-									if(element == tags[i])
+									if(element.toLowerCase() == tags[i].toLowerCase())
 										{
-											flag++;
+											flag.push(element);
 										}
 									
 								}
@@ -71,12 +71,12 @@ function searchtags(){
 							}
 						}
 				}
-			if(flag == tags.length && flag!= 0)
+			if(flag.length == tags.length && flag.length != 0)
 			{
 				var buttons = "";
 				for(var i=0;i<tags.length;i++)
 					{
-						buttons += '<button>' + tags[i]+ '</button>&nbsp';
+						buttons += '<button>' + flag[i]+ '</button>&nbsp';
 					}
 				//console.log(child.val().image);
 				// Adding Hashtag
