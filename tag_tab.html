@@ -6,12 +6,21 @@
 <meta name="viewport" content="width=device-height*0.3, initial-scale=1.0">
 <title>tag_tab</title>
 <link href="./css/tag_tab.css" rel="stylesheet" type="text/css">
+<link href="./css/onsenui.css" rel="stylesheet" type="text/css">
+<link href="./css/onsen-css-components.css" rel="stylesheet" type="text/css">
 <link href="./css/ratchet-theme-ios.min.css" rel="stylesheet" type="text/css">
 <link href="./css/ratchet.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+body {
+    font-family: 'Quicksand';font-size: 22px;
+}
+</style>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -21,12 +30,13 @@
 </head>
 
 <body>
-	<header class="bar bar-nav"><button type="button" class="btn btn-default navbar-btn pull-left box"> <span class="glyphicon glyphicon-chevron-left"></span> </button>
-		<h1 class="title">BingBong's Menu</h1>
+	<header class="nav-bar"><!--<button type="button" class="btn btn-default navbar-btn pull-left box"> <span class="glyphicon glyphicon-chevron-left"></span> </button>-->
+		<h1 class="title">  BingBong's Menu</h1>
 	</header>
 	
 <nav class="bar bar-nav bar-header-secondary bar-search">
-	<input id = "input1" class = "searchbar pull-left" type="search" placeholder="Hashtag">
+	<input id = "input1" class = "searchbar pull-left" type="search" placeholder="Hashtag ex) spicy, hot">
+ 	<!--<input id = "input1"  type="search" value="" placeholder="Search" class="search-input" style="width: 280px;">-->
   	<a id = "searchbutton" class="icon fa fa-search-plus searchbutton pull-right"></a>
   	<div class = "panel panel-default box">
   		<div class = "panel-body">
@@ -37,12 +47,37 @@
 </nav>
 
 
-<div  id="elements" class = "content foods">
+<div id="elements" class = "content foods">
 
 </div>
 
 
-<nav class="bar bar-tab">
+<div class="tabbar">
+  <label class="tabbar__item" >
+    <input type="radio" name="tabbar-a" onclick="window.location.href='index.html'" >
+
+    <button class="tabbar__button" >
+     
+      <i class="tabbar__icon fas fa-utensils"></i>
+      <div class="tabbar__label" style="font-family: 'Quicksand'">Search</div>
+
+    </button>
+
+  </label>
+
+
+  <label class="tabbar__item" >
+    <input type="radio" name="tabbar-a"  onclick="window.location.href='tag-tab.html'" checked="checked" >
+    <button class="tabbar__button" >
+
+      <i class="tabbar__icon fas fa-hashtag"></i>
+      <div class="tabbar__label" style="font-family: 'Quicksand'">Hashtag</div>
+
+    </button>
+  </label>
+</div>
+
+<!--<nav class="bar bar-tab">
   <a class="tab-item" href="index.html">
     <div>
     	<span class="icon fas fa-utensils"></span>
@@ -56,10 +91,12 @@
     <span class="tab-label">Hashtag</span>
   </a>
 	
-</nav>
+</nav>-->
 <script src="jquery/js/jquery-1.9.0.min.js"></script>
 <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="./js/onsenui.js"></script> 
+<script src="./angular-onsenui.js"></script>     
 <script src="./js/tag-tab.js"></script>     
 </body>
 </html>
