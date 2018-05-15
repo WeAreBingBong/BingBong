@@ -2,3 +2,13 @@
 전체 크기 고정 ex) 600*900 이랑 scroll
 
 해시태그 좋아요 수
+
+로딩 이미지
+
+tag tab.js에서 initialize firebase
+
+
+오늘 할거
+1. 이름 검색 되게
+
+2. autocomplete o
