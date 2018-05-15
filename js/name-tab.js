@@ -7,10 +7,12 @@ var _names = [];
 var database;
 var dishes;
 	var tagsauto = [];
-function searchtags(){
+function searchtags(name){
 
 	dishes.on('value',function(snapshot){
 		snapshot.forEach(function(child){
+			if(name.toLowerCase() == child.key.toLowerCase()) {
+				console.log(name);
 				//console.log(child.val().Hashtags);
 				var flag =  [];
 				var toprank = ["","",""];
@@ -79,11 +81,14 @@ function searchtags(){
 				//console.log(child.val().image);
 				// Adding Hashtag
 				/*var hashtagbutton = '&nbsp<div class = "pannel panel-info" style="margin-top: 2px;margin-bottom: 2px; margin-right: 2px; margin-left: 10px; border:1px solid #bce8f1; border-radius: 5px;" ><div class = "panel-heading"><h4>'+child.key+'</h4></div><div class = "panel-body"><img src='+child.val().image +' width="200" class = "pull-left"><div class = "container" ><h4 class = "make-margin">Searching Hashtags </h4><div class = "make-margin">' +buttons +'</div></div>';*/
-				var hashtagbutton = '&nbsp<div class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
+				var hashtagbutton ='&nbsp<div class="card"><h2 class="card__title"style="font-family: Quicksand;font-size:21px; font-weight:bold; ">'
+														+child.key+
+														'</h2><div class="card__content"><img src='
+														+child.val().image +' width="180" class = "pull-left">';
 				// Adding Top Rank Hashtag
 
 
-				var toprankbutton="";
+				//var toprankbutton="";
         /*
 				for(var i=0;i<3;i++)
 					{
@@ -92,10 +97,10 @@ function searchtags(){
 								buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '</button>&nbsp';
 							}
 					}*/
-				toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2 +'</div></div>';
-				document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+ hashtagbutton+toprankbutton;
+				//toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2 +'</div></div>';
+				document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+ hashtagbutton;
 
-
+			}
 			});
 		});
 }
@@ -111,7 +116,7 @@ $(document).ready(function(){
   firebase.initializeApp(config);
   database = firebase.database();
 	dishes = database.ref();
-	searchtags();
+	//searchtags();
 
 	dishes.on('value',function(snapshot){
 		snapshot.forEach(function(child){
@@ -153,7 +158,7 @@ search_button.onclick = function(){answerclick()};
 
 function answerclick(value)
 {
-	searchtags();
+	searchtags(value);
 }
 
 document.getElementById("input1").onclick = function(){
