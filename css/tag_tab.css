@@ -7,6 +7,12 @@
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
 }
+.hashb {
+    background-color: white;
+    color: black;
+    border: 2px solid gray; /* Green */
+}
+
 .bar-search .searchbar{
 	width: 93%;
 }
