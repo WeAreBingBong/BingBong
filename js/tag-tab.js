@@ -181,7 +181,7 @@ function answerclick(value)
 	else
 	{
 
-		paragraph.innerHTML = paragraph.innerHTML + "&nbsp"+ '<button class="tagb" style="border-radius: 5px;>' + value +"&nbsp"+ '<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
+		paragraph.innerHTML = paragraph.innerHTML + "&nbsp"+ '<button class="tagb" style="border-radius: 5px;">' + value +"&nbsp"+ '<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
 	}
 	searchtags();
 	}	
