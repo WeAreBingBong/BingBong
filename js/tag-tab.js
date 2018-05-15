@@ -89,7 +89,7 @@ function searchtags(){
 					{
 						if(toprank[i] != "")
 							{
-								buttons2 += '<button style="margin-bottom : 5px; border-radius: 5px; font-family: Quicksand;">' + toprank[i]+ '</button>&nbsp';
+								buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '</button>&nbsp';
 							}
 					}
 				toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2 +'</div></div>';
@@ -176,12 +176,12 @@ function answerclick(value)
 	{
 
 		paragraph.innerHTML = "";
-		 paragraph.innerHTML = '<button class="tagb" ; style="border-radius: 5px;">' + value +"&nbsp" +'<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
+		 paragraph.innerHTML = '<button class="tagb hashb" ;>' + value +"&nbsp" +'<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
 	}
 	else
 	{
 
-		paragraph.innerHTML = paragraph.innerHTML + "&nbsp"+ '<button class="tagb" style="border-radius: 5px;">' + value +"&nbsp"+ '<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
+		paragraph.innerHTML = paragraph.innerHTML + "&nbsp"+ '<button class="tagb hashb" >' + value +"&nbsp"+ '<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
 	}
 	searchtags();
 	}	
