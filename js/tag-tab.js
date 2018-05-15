@@ -8,7 +8,7 @@ var dishes;
 function searchtags(){
 	document.getElementById("elements").innerHTML = "";
 	dishes.on('value',function(snapshot){
-		 
+
 		snapshot.forEach(function(child){
 				//console.log(child.val().Hashtags);
 				var flag =  [];
@@ -22,17 +22,17 @@ function searchtags(){
 							for(var i=0;i<tags.length;i++)
 								{
 									//console.log(tags[i]);
-									
+
 									if(element.toLowerCase() == tags[i].toLowerCase())
 										{
 											flag.push(element);
 										}
-									
+
 								}
 							if(toprank[0] == "")
 							{
 								toprank[0] = element;
-									
+
 							}
 							else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[0]])
 								{
@@ -46,7 +46,7 @@ function searchtags(){
 								if(toprank[1] == "")
 								{
 									toprank[1] = element;
-									
+
 								}
 								else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[1]])
 								{
@@ -60,11 +60,11 @@ function searchtags(){
 									if(toprank[2] == "")
 									{
 										toprank[2] = element;
-									
+
 									}
 									else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[2]])
 									{
-										
+
 										toprank[2] = element;
 									}
 								}
@@ -94,7 +94,7 @@ function searchtags(){
 					}
 				toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2 +'</div></div>';
 				document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+ hashtagbutton+toprankbutton;
-				
+
 			}
 			});
 		});
@@ -147,10 +147,10 @@ $( "#input1" ).autocomplete({
         }
         var newTag = $(this).val();
         $("#input1").val("");
-        
+
         event.preventDefault();
-        
-        
+
+
     }
     });
 
@@ -169,7 +169,7 @@ function answerclick(value)
 		}
 	}
 	if(flag == 0)
-	{	
+	{
 	tags.push(value);
 
 	if(tags.length == 1)
@@ -184,7 +184,7 @@ function answerclick(value)
 		paragraph.innerHTML = paragraph.innerHTML + "&nbsp"+ '<button class="tagb hashb" >' + value +"&nbsp"+ '<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
 	}
 	searchtags();
-	}	
+	}
 }
 
 document.getElementById("input1").onclick = function(){
@@ -205,12 +205,10 @@ function deleted(node1){
 }
 searchtags();
 
-var normalize = function( term ) {     
+var normalize = function( term ) {
 	var ret = "";
       for ( var i = 0; i < term.length; i++ ) {
         ret += accentMap[ term.charAt(i) ] || term.charAt(i);
       }
       return ret;
     };
-
-

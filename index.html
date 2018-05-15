@@ -24,31 +24,36 @@
 <form class="bar bar-nav">
   <button type="button" class="btn btn-default navbar-btn pull-left box"> <span class="glyphicon glyphicon-chevron-left"></span> </button>
   <p class="title">BingBong's Menu</p>
-      
+
 </form>
 
 <form class="bar bar-nav bar-header-secondary bar-search">
-		<input class = "searchbar pull-left" type="search" placeholder="Search">
-	
-	<a class="icon fa fa-search searchbutton pull-right"></a>
-	
-  </form>
-	<nav class="bar bar-tab">
+		<input id = "input1" class = "searchbar pull-left" type="search" placeholder="Search">
+
+	<a id = "searchbutton" class="icon fa fa-search searchbutton pull-right"></a>
+
+</form>
+
+<nav class="bar bar-tab">
   <a class="tab-item active" href="index.html">
     <div>
-    	 <span class="icon fas fa-utensils"></span>
-	  </div>
+		<span class="icon fas fa-utensils"></span>
+	</div>
     <span class="tab-label">Search Menu</span>
   </a>
   <a class="tab-item" href="tag_tab.html">
 	<div>
-    <span class="icon fa fa-hashtag"></span>
-	  </div>
+		<span class="icon fa fa-hashtag"></span>
+	</div>
     <span class="tab-label">Hashtag</span>
   </a>
 
-  
 </nav>
-    
+<script src="jquery/js/jquery-1.9.0.min.js"></script>
+<script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="./js/onsenui.js"></script>
+<script src="./angular-onsenui.js"></script>
+<script src="./js/name-tab.js"></script>
 </body>
 </html>
