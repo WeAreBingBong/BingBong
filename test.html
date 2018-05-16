@@ -1,14 +1,26 @@
 <!doctype html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>home_main_tab</title>
+<link href="./css/home_main_tab.css" rel="stylesheet" type="text/css">
+<link href="./css/ratchet-theme-ios.min.css" rel="stylesheet" type="text/css">
+<link href="./css/ratchet.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 
-<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 여기양-->
+<link href="./css/tag_tab.css" rel="stylesheet" type="text/css">
+<link href="./css/onsenui.css" rel="stylesheet" type="text/css">
+<link href="./css/onsen-css-components.css" rel="stylesheet" type="text/css">
 
-<style>
-body {
-    font-family: 'Quicksand';font-size: 22px;
-}
-</style>
+<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+<!--
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+여기양-->
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -18,31 +30,48 @@ body {
 </head>
 
 <body>
-	<header class="nav-bar"><!--<button type="button" class="btn btn-default navbar-btn pull-left box"> <span class="glyphicon glyphicon-chevron-left"></span> </button>-->
-		<h1 class="title">  BingBong's Menu</h1>
-	</header>
 
-<nav class="bar bar-nav bar-header-secondary bar-search">
-	<input id = "input1" class = "searchbar pull-left" type="search" placeholder="Hashtag ex) spicy, hot">
- 	<!--<input id = "input1"  type="search" value="" placeholder="Search" class="search-input" style="width: 280px;">-->
-  	<a id = "searchbutton" class="icon fa fa-search-plus searchbutton pull-right"></a>
-  	<div class = "panel panel-default box">
-  		<div class = "panel-body">
-  			<h3 class = "a"> Added Hashtags</h3>
-  			<p id="in-panel">hashtags will be here.</p>
-		</div>
-	</div>
-</nav>
 
+<form class="bar bar-nav">
+  <button type="button" class="btn btn-default navbar-btn pull-left box"> <span class="glyphicon glyphicon-chevron-left"></span> </button>
+  <p class="title">BingBong's Menu</p>
+
+</form>
+
+<form class="bar bar-nav bar-header-secondary bar-search">
+		<input id = "input1" class = "searchbar pull-left" type="search" placeholder="Search">
+
+	<a id = "searchbutton" class="icon fa fa-search searchbutton pull-right"></a>
+
+</form>
 
 <div id="elements" class = "content foods">
-
-  <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;"> hi <br/>          <img src="./img/profile.png" height="16" width="16">  32      </button>
-
 
 </div>
 
 
+<nav class="bar bar-tab">
+  <a class="tab-item active" href="index.html">
+    <div>
+		<span class="icon fas fa-utensils"></span>
+	</div>
+    <span class="tab-label">Search Menu</span>
+  </a>
+  <a class="tab-item" href="tag_tab.html">
+	<div>
+		<span class="icon fa fa-hashtag"></span>
+	</div>
+    <span class="tab-label">Hashtag</span>
+  </a>
 
+</nav>
+
+
+<script src="jquery/js/jquery-1.9.0.min.js"></script>
+<script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="./js/onsenui.js"></script>
+<script src="./angular-onsenui.js"></script>
+<script src="./js/test-tab.js"></script>
 </body>
 </html>

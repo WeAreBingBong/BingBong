@@ -5,7 +5,9 @@ var tags= [];
 var _names = [];
 var database;
 var dishes;
-   var tagsauto = [];
+var tagsauto = [];
+
+
 function searchtags(name){
 
    dishes.on('value',function(snapshot){
@@ -88,7 +90,7 @@ function searchtags(name){
                {
                   if(toprank[i] != "")
                      {
-                        buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '</button>';
+                        buttons2 += '<button id="beautiful" class="hashb" onclick="setColor()" style="margin-bottom : 5px; font-family: Quicksand ;">' + toprank[i]+ '</button>';
                      }
                }
 			var tempb = buttons2;
@@ -96,9 +98,10 @@ function searchtags(name){
             toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2+ " " +more_button+'</div></div>';
 			var addButton = '<button class = "add" id="addbut"style="margin-bottom : 5px; font-family: Quicksand;">Add Hashtag...</button>'
 
+      //add button2 in here
+      document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+name_img+toprankbutton;
 
-            document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+name_img+toprankbutton;
-			document.getElementById("morebut").onclick = function() {seeMoreorLess()};
+      document.getElementById("morebut").onclick = function() {seeMoreorLess()};
 			function seeMoreorLess() {
 
 				if(document.getElementById("morebut").style.background= "url('https://image.flaticon.com/icons/svg/3/3907.svg')"){ //펼치기
@@ -110,123 +113,8 @@ function searchtags(name){
 						else continue;
 					}
 					document.getElementById("elements").innerHTML = name_img+ '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">All Hashtags </h4><div class = "make-margin">' +buttons2+ addButton +more_button+'</div></div>';
-					document.getElementById("morebut").style.background= "url('https://image.flaticon.com/icons/svg/3/3581.svg')";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					////////////////////////////////////////////////////////////////////////////////여기 firebase에 add하는거///////////////////////////////////////// onclick부터 틀려서 다시 짜야할듯 //////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          document.getElementById("morebut").style.background= "url('https://image.flaticon.com/icons/svg/3/3581.svg')";
 
 					//onclick이 아니라 input 받았을때
 					//addbut은 애드 버튼임! 그러고보니 버튼이 아니라 text input 받을수있는 박스로 해야하넹 ㅠ
@@ -252,6 +140,7 @@ function searchtags(name){
 }
 
 
+
 // Initialize Firebase
 
 $(document).ready(function(){
@@ -269,7 +158,8 @@ $(document).ready(function(){
       snapshot.forEach(function(child){
       _names.push(child.key);
       });
-});
+    });
+    answerclick("Gamjatang");
 });
 
 
