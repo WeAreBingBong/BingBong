@@ -1,6 +1,6 @@
 // JavaScript Document
  $(window).load(function(){        
-   $('#myModal').modal('show');
+   $('#id01').modal('show');
     }); 
 var options = document.getElementById('sel1');
 	var result = "<option>No country</option>";
