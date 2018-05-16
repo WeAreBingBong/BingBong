@@ -83,7 +83,7 @@ document.getElementById("elements").innerHTML = "";
 			//console.log(everytags);
 
            var buttons2="";
-         var name_img = '&nbsp<div class = "pannel panel-info" style="margin-top: 2px;margin-bottom: 2px; margin-right: 2px; margin-left: 10px; border:1px solid #bce8f1; border-radius: 5px;" ><div class = "panel-heading"><h4>'+child.key+'</h3></div><div class = "panel-body"><img src='+child.val().image +' width="200" class = "pull-left"><div class = "container" style = "height : 0px"></div>';
+         var name_img = '&nbsp<div class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
 
             var toprankbutton="";
 
@@ -98,7 +98,7 @@ document.getElementById("elements").innerHTML = "";
 			var more_button = '<button class = "more" id="morebut"></button>';
             toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2+ " " +more_button+'</div></div>';
 
-            document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+name_img+toprankbutton;
+      document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+name_img+toprankbutton;
 			document.getElementById("morebut").onclick = function() {
 				count ++;
 				seeMoreorLess(child);
@@ -170,7 +170,7 @@ function seeMoreorLess(child) {
 		  }
 	}
 	           var buttons2="";
-         var name_img = '&nbsp<div class = "pannel panel-info" style="margin-top: 2px;margin-bottom: 2px; margin-right: 2px; margin-left: 10px; border:1px solid #bce8f1; border-radius: 5px;" ><div class = "panel-heading"><h4>'+child.key+'</h3></div><div class = "panel-body"><img src='+child.val().image +' width="200" class = "pull-left"><div class = "container" style = "height : 0px"></div>';
+         var name_img = '&nbsp<div class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
 
 
 

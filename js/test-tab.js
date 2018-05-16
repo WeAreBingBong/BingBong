@@ -3,31 +3,27 @@
 
 var tags= [];
 var _names = [];
+
 var database;
 var dishes;
-var tagsauto = [];
-
-
+   var tagsauto = [];
 function searchtags(name){
 
    dishes.on('value',function(snapshot){
       snapshot.forEach(function(child){
-
          if(name.toLowerCase() == child.key.toLowerCase()) {
-            //console.log(name);
+            console.log(name);
             //console.log(child.val().Hashtags);
             var flag =  [];
             var toprank = ["","",""];
-			var everytags = [];
-			//console.log(everytags);
+        /*
             for(var obj in child.val().Hashtags)
             {
-
+               //console.log(child.val().Hashtags[obj]);
                   for(var element in child.val().Hashtags[obj])
                   {
-						//console.log(element);
-						everytags.push(element);
-						for(var i=0;i<tags.length;i++)
+                     //console.log(element);
+                     for(var i=0;i<tags.length;i++)
                         {
                            //console.log(tags[i]);
 
@@ -79,72 +75,40 @@ function searchtags(name){
                      }
                   }
             }
-			//console.log(everytags);
+      */
 
-           var buttons2="";
-         var name_img = '&nbsp<div class = "pannel panel-info" style="margin-top: 2px;margin-bottom: 2px; margin-right: 2px; margin-left: 10px; border:1px solid #bce8f1; border-radius: 5px;" ><div class = "panel-heading"><h4>'+child.key+'</h3></div><div class = "panel-body"><img src='+child.val().image +' width="200" class = "pull-left"><div class = "container" style = "height : 0px"></div>';
 
-            var toprankbutton="";
+            //console.log(child.val().image);
+            // Adding Hashtag
+            /*var hashtagbutton = '&nbsp<div class = "pannel panel-info" style="margin-top: 2px;margin-bottom: 2px; margin-right: 2px; margin-left: 10px; border:1px solid #bce8f1; border-radius: 5px;" ><div class = "panel-heading"><h4>'+child.key+'</h4></div><div class = "panel-body"><img src='+child.val().image +' width="200" class = "pull-left"><div class = "container" ><h4 class = "make-margin">Searching Hashtags </h4><div class = "make-margin">' +buttons +'</div></div>';*/
+            var hashtagbutton ='&nbsp<div class="card"><h2 class="card__title"style="font-family: Quicksand;font-size:21px; font-weight:bold; ">'
+                                          +child.key+
+                                          '</h2><div class="card__content"><img src='
+                                          +child.val().image +' width="180" class = "pull-left">';
+            // Adding Top Rank Hashtag
 
+
+            //var toprankbutton="";
+        /*
             for(var i=0;i<3;i++)
                {
                   if(toprank[i] != "")
                      {
-                        buttons2 += '<button id="beautiful" class="hashb" onclick="setColor()" style="margin-bottom : 5px; font-family: Quicksand ;">' + toprank[i]+ '</button>';
+                        buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '</button>&nbsp';
                      }
-               }
-			var tempb = buttons2;
-			var more_button = '<button class = "more" id="morebut"></button>'
-            toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2+ " " +more_button+'</div></div>';
-			var addButton = '<button class = "add" id="addbut"style="margin-bottom : 5px; font-family: Quicksand;">Add Hashtag...</button>'
+               }*/
+            //toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2 +'</div></div>';
+            document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+ hashtagbutton;
 
-      //add button2 in here
-      document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+name_img+toprankbutton;
-
-      document.getElementById("morebut").onclick = function() {seeMoreorLess()};
-			function seeMoreorLess() {
-
-				if(document.getElementById("morebut").style.background= "url('https://image.flaticon.com/icons/svg/3/3907.svg')"){ //펼치기
-					for(var i=0;i<everytags.length;i++){
-						//top rank랑 겹치면 안넣어줌
-						if(everytags[i] != toprank[0] && everytags[i] != toprank[1] && everytags[i] != toprank[2]){
-							buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + everytags[i]+ '</button>';
-						}
-						else continue;
-					}
-					document.getElementById("elements").innerHTML = name_img+ '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">All Hashtags </h4><div class = "make-margin">' +buttons2+ addButton +more_button+'</div></div>';
-
-          document.getElementById("morebut").style.background= "url('https://image.flaticon.com/icons/svg/3/3581.svg')";
-
-					//onclick이 아니라 input 받았을때
-					//addbut은 애드 버튼임! 그러고보니 버튼이 아니라 text input 받을수있는 박스로 해야하넹 ㅠ
-					//document.getElementById("addbut").onclick = function() {addfun()};
-					//애드 펑션임
-					/*function addfun(){
-						var dish = database.ref(name/Hashtags/Others)
-						var tagObject = {
-
-					}*/
-				}
-				else{//줄이기
-					document.getElementById("elements").innerHTML = name_img+ '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +tempb+ " " +more_button+'</div></div>';
-					document.getElementById("morebut").style.background= "url('https://image.flaticon.com/icons/svg/3/3907.svg')";
-				}
-
-			}
-
-
-    }
+         }
          });
       });
 }
 
 
-
 // Initialize Firebase
 
 $(document).ready(function(){
-  $('#loading').remove();
   var config = {
     apiKey: "AIzaSyDm03A2zOboq6VbKBq4QC2e1xiTsc4ADjg",
     databaseURL: "https://we-are-bingbong.firebaseio.com",
@@ -158,8 +122,7 @@ $(document).ready(function(){
       snapshot.forEach(function(child){
       _names.push(child.key);
       });
-    });
-    answerclick("Gamjatang");
+});
 });
 
 
@@ -195,7 +158,6 @@ search_button.onclick = function(){answerclick()};
 
 function answerclick(value)
 {
-	document.getElementById("elements").innerHTML = "";
    searchtags(value);
 }
 
