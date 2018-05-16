@@ -89,7 +89,12 @@ function searchtags(){
 					{
 						if(toprank[i] != "")
 							{
-								buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '</button>&nbsp';
+								buttons2 += ' <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">'
+								 				+ toprank[i]+ '<br/>'+
+												////여기ㅣ기기기건드렸음!!!!!!
+												'<img src="./img/profile.png" height="16" width="16">'
+												+ 32  + //  숫자
+												'</button>  &nbsp';
 							}
 					}
 				toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2 +'</div></div>';
