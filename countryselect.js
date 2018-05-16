@@ -1,4 +1,7 @@
 // JavaScript Document
+ $(window).load(function(){        
+   $('#myModal').modal('show');
+    }); 
 var options = document.getElementById('sel1');
 	var result = "<option>No country</option>";
 	var i = 0;
