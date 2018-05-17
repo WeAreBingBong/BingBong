@@ -6,7 +6,7 @@ var _names = [];
 var database;
 var dishes;
 var count = 0;
-   var tagsauto = [];
+var tagsauto = [];
 var putButton = '<button class = "foradd" id="put"></button>';
 
 function searchtags(name){
