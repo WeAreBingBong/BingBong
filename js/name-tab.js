@@ -9,9 +9,9 @@ var count = 0;
 var tagsauto = [];
 var putButton = '<button class = "foradd" id="put"></button>';
 
-
+/*
 function categoryOfTag(child, tag) {
-  dishes.once('value',function(snapshot){
+  dishes.on('value',function(snapshot){
      snapshot.forEach(function(child){
        var category="";
        for(var obj in child.val().Hashtags)
@@ -27,12 +27,12 @@ function categoryOfTag(child, tag) {
          return category;
       }
     )})
-}
+}*/
 
 //console.log(indexOfTag(Gamjatang, Hot));
 function searchtags(name){
 document.getElementById("elements").innerHTML = "";
-   dishes.on('value',function(snapshot){
+   dishes.once('value',function(snapshot){
       snapshot.forEach(function(child){
 
          if(name.toLowerCase() == child.key.toLowerCase()) {
@@ -41,7 +41,7 @@ document.getElementById("elements").innerHTML = "";
             var flag =  [];
             var toprank = ["","",""];
             var topranktag = [0,0,0];
-			var everytags = [];
+			      var everytags = [];
 
             for(var obj in child.val().Hashtags)
             {
@@ -115,7 +115,6 @@ document.getElementById("elements").innerHTML = "";
                   }
             }
 
-		var dbTestRef = database.ref(name+'/Hashtags/ca')
 
            var buttons2="";
          var name_img = '&nbsp<div class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
@@ -126,7 +125,7 @@ document.getElementById("elements").innerHTML = "";
                {
                   if(toprank[i] != "")
                      {
-                        buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;" value=' + toprank[i] + topranktag[i].toString()+ '>' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+topranktag[i]+'</button>';
+                        buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+topranktag[i]+'</button>';
 
                      }
                }
@@ -140,23 +139,41 @@ document.getElementById("elements").innerHTML = "";
 
 
 			var tagclick = document.getElementsByClassName("hashb");
-			for (var i = 0; i < tagclick.length; i++) {
-				tagclick[i].addEventListener('click', (function(i) {
-					return function() {
-						console.log(i);
+      //console.log(tagclick[0]);
 
-            console.log(tagclick[i].value);
-            //child.val().Hashtags[ca][]
-            /*
-						console.log(cat);
-						getnum(name, tagclick[i], cat);
-            var dbTestRef = database.ref(name+'/Hashtags/'+cat);
-            dbTestRef.update({
-              //tagclick[i]: getnum(name, tagclikc[i], cat)-1;
-            })*/
+			for (var i = 0; i < tagclick.length; i++) {
+        tagclick[i].addEventListener('click', (function(i) {
+          //tagclick[i].setAttribute("id", "clickedone");
+          //document.getElementById("clickedone").style.height = "100px";
+					return function() {
+            console.log(i);
+						console.log(toprank[i]);
+            var a = toprank[i];
+            var dbTestRef = database.ref(name+'/Hashtags/ca')
+            //라이크 숫자 업뎃하는 코드
+            dbTestRef.once('value', function(data){
+              //console.log(toprank[i]);
+              var likes = data.child(toprank[i]).val();
+              console.log(likes);
+              firebase.database().ref(name+'/Hashtags/ca/'+a).set(likes+1);
+              console.log(tagclick[i]);
+              //$(this).css('background-color', 'red');
+              //tagclick[i] = '<button class="hashb" id="clickedone"  style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+topranktag[i]+1+'</button>';
+              //this.style.height = "100px";
+              //document.getElementById('clickedone').style.backgroundColor="black";
+              //return(data.child(tag).val());
+            })
+						//console.log(likes);
+
+            //dbTestRef.update({
+            //  a : likes + 1
+            //})
 					};
-				})(i), false);
+				}) (i), false);
+
 			};
+      //tagclick[i]= '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+topranktag[i]+'</button>';
+
 
 			document.getElementById("morebut").onclick = function() {
 				var addinput = '<input id = "input2" class = "adding" type="text" placeholder="Add Hashtag ex) spicy, salty">';
@@ -189,14 +206,6 @@ document.getElementById("elements").innerHTML = "";
 }
 
 
-function getnum(name, tag, category){
-	var dbTestRef = database.ref(name+'/Hashtags/'+category)
-	dbTestRef.once('value', function(data){
-		console.log(data.child(tag).val());
-    //return(data.child(tag).val());
-	})
-}
-
 
 
 // Initialize Firebase
@@ -223,10 +232,6 @@ $(document).ready(function(){
 	//console.log($('div.card__title').length);
 
 });
-
-
-  //Erase this for last commit
-  answerclick("Gamjatang");
 });
 
 
