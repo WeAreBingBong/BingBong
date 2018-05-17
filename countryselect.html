@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+    <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet"/>
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 /* Full-width input fields */
@@ -71,7 +71,7 @@ span.psw {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 100%; /* Could be more or less, depending on screen size */
 }
 /* The Close Button (x) */
 .close {
@@ -118,11 +118,9 @@ span.psw {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
-<div id="id01" class="modal">
+<div>
   
-  <form class="modal-content animate">
+  <form class="content" style = "margin-top : 250px; padding:20px;">
     <div class="container">
       <label for="sel1" ><b>Where are you from?</b></label>
       <div class="form-group" >
@@ -130,7 +128,7 @@ span.psw {
     		<option>No country</option>
   		</select>
 	</div>
-      <button type="submit" id="submitcountry" onclick="window.location.href='index.html'">Start</button>
+      <a href = "home_search.html"><button type="button" class="btn btn-default" >Start</button></a>
     </div>
   </form>
 </div>
@@ -138,7 +136,7 @@ span.psw {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="./country_capital_pairs.js"></script>  
-	<script src="./countryselect.js"></script>
+  <script src="./js/country_capital_pairs.js"></script>  
+	<script src="./js/countryselect.js"></script>
 </body>
 </html>

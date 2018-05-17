@@ -7,7 +7,7 @@ var dishes;
 	var tagsauto = [];
 function searchtags(){
 	document.getElementById("elements").innerHTML = "";
-	dishes.on('value',function(snapshot){
+	dishes.once('value',function(snapshot){
 
 		snapshot.forEach(function(child){
 				//console.log(child.val().Hashtags);
@@ -116,7 +116,7 @@ $(document).ready(function(){
 	dishes = database.ref();
 	searchtags();
 
-	dishes.on('value',function(snapshot){
+	dishes.once('value',function(snapshot){
 		snapshot.forEach(function(child){
 
 			if(child.key == "All")
