@@ -92,7 +92,7 @@ document.getElementById("elements").innerHTML = "";
                            toprank[2] = tmp;
 
                            var tmptag = topranktag[1];
-                           toprantagk[1] = child.val().Hashtags[obj][element];
+                           topranktag[1] = child.val().Hashtags[obj][element];
                            topranktag[2] = tmptag;
                         }
                         else
