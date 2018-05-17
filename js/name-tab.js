@@ -10,20 +10,26 @@ var count = 0;
 var putButton = '<button class = "foradd" id="put"></button>';
 
 
-function indexOfTag(child, tag) {
-	var category="";
-	for(var obj in child.val().Hashtags)
-    {
-        for(var element in child.val().Hashtags[obj])
-        {
-			if(element == child){
-				category = obj;
-			}
-			else continue;
-		}
-	}
-	return category;
+function categoryOfTag(child, tag) {
+  dishes.on('value',function(snapshot){
+     snapshot.forEach(function(child){
+       var category="";
+       for(var obj in child.val().Hashtags)
+          {
+              for(var element in child.val().Hashtags[obj])
+              {
+                  if(element == tag){
+                        category = obj;
+
+                  }
+              }
+          }
+         return category;
+      }
+    )})
 }
+
+
 
 
 //console.log(indexOfTag(Gamjatang, Hot));
@@ -31,24 +37,24 @@ function searchtags(name){
 document.getElementById("elements").innerHTML = "";
    dishes.on('value',function(snapshot){
       snapshot.forEach(function(child){
-		
+
          if(name.toLowerCase() == child.key.toLowerCase()) {
-          
-         
+
+
             var flag =  [];
             var toprank = ["","",""];
 			var everytags = [];
-			
+
             for(var obj in child.val().Hashtags)
             {
-			   
+
                   for(var element in child.val().Hashtags[obj])
                   {
 						//if(element == name){ category = obj; }
 						everytags.push(element);
 						for(var i=0;i<tags.length;i++)
                         {
-                         
+
 
                            if(element.toLowerCase() == tags[i].toLowerCase())
                               {
@@ -98,14 +104,14 @@ document.getElementById("elements").innerHTML = "";
                      }
                   }
             }
-			
+
 		var dbTestRef = database.ref(name+'/Hashtags/Others')
-		
+
            var buttons2="";
          var name_img = '&nbsp<div class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
- 
+
             var toprankbutton="";
-        
+
             for(var i=0;i<3;i++)
                {
                   if(toprank[i] != "")
@@ -117,40 +123,44 @@ document.getElementById("elements").innerHTML = "";
                         buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+32+'</button>';
                      }
                }
-			var tempb = buttons2;   
+			var tempb = buttons2;
 			var more_button = '<button class = "more" id="morebut"></button>';
             toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2+ " " +more_button+'</div></div>';
-			
+
             document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+name_img+toprankbutton;
-			
-			
+
+
 			var tagclick = document.getElementsByClassName("hashb");
 			for (var i = 0; i < tagclick.length; i++) {
 				tagclick[i].addEventListener('click', (function(i) {
 					return function() {
 						console.log(i);
-						var cat = indexOfTag(child.key, tagclick[i]);
+						var cat = categoryOfTag(child, tagclick[i]);
 						console.log(cat);
 						getnum(name, tagclick[i], cat);
+            var dbTestRef = database.ref(name+'/Hashtags/'+cat);
+            dbTestRef.update({
+              //tagclick[i]: getnum(name, tagclikc[i], cat)-1;
+            })
 					};
 				})(i), false);
 			};
-			
+
 			document.getElementById("morebut").onclick = function() {
 				//console.log(this);
 				count ++;
 				seeMoreorLess(child);
 				//console.log("clickeddd");
-				
+
 				//console.log(count);
 				//console.log(indexOfTag(name, Hot));
 			}
-			
+
          }
-		 
+
          });
       });
-	  
+
 }
 
 
@@ -158,21 +168,22 @@ document.getElementById("elements").innerHTML = "";
 function getnum(name, tag, category){
 	var dbTestRef = database.ref(name+'/Hashtags/'+category)
 	dbTestRef.once('value', function(data){
-		console.log(data.child(tag).val())
+		console.log(data.child(tag).val());
+    //return(data.child(tag).val());
 	})
 }
-	
+
 
 function seeMoreorLess(child) {
-	
+
 	var toprank = ["","",""];
 	var everytags = [];
-	
+
 	for(var obj in child.val().Hashtags)
 	{
 		  for(var element in child.val().Hashtags[obj])
 		  {
-				
+
 				everytags.push(element);
 			 if(toprank[0] == "")
 			 {
@@ -217,9 +228,9 @@ function seeMoreorLess(child) {
 	}
 	           var buttons2="";
          var name_img = '&nbsp<div class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
- 
-            
-        
+
+
+
             for(var i=0;i<3;i++)
                {
                   if(toprank[i] != "")
@@ -227,16 +238,16 @@ function seeMoreorLess(child) {
                         buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+32+'</button>';
                      }
                }
-			var tempb = buttons2;   
+			var tempb = buttons2;
 			var more_button = '<button class = "more" id="morebut"></button>';
 			var addinput = '<input id = "input2" class = "adding" type="text" placeholder="Add Hashtag ex) spicy, salty">';
-			
-			
+
+
 			/*document.getElementById("input2").onclick=function(){
 			document.getElementById("input2").value = "";
 			}*/
 
-			
+
 	if(count % 2 == 1){ //펼치기
 		for(var i=0;i<everytags.length;i++){
 			//top rank랑 겹치면 안넣어줌
@@ -247,22 +258,22 @@ function seeMoreorLess(child) {
 		}
 		document.getElementById("elements").innerHTML = name_img+ '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">All Hashtags </h4><div class = "make-margin">' +buttons2+ addinput+putButton +more_button+'</div></div>';
 		document.getElementById("morebut").style.background= "url('https://image.flaticon.com/icons/svg/3/3581.svg')";
-		
+
 		var put_Button = document.getElementById("put");
 		//console.log(put_Button);
 		put_Button.onclick = function() {
-			addtag(child.key, document.getElementById("input2").value)	
-			
+			addtag(child.key, document.getElementById("input2").value)
+
 		};
 
-	}	
+	}
 	else{//줄이기
-	
-		
+
+
 		document.getElementById("elements").innerHTML = name_img+ '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +tempb+ " " +more_button+'</div></div>';
 		document.getElementById("morebut").style.background= "url('https://image.flaticon.com/icons/svg/3/3907.svg')";
 	}
-	
+
 }
 
 
@@ -284,7 +295,7 @@ $(document).ready(function(){
       });
 
 	//if($('div.pannel11').length == 1{
-		
+
 	//}
 	console.log("Updated");
 	//console.log($('div.card__title').length);
@@ -325,12 +336,12 @@ $( "#input1" ).autocomplete({
 function addtag(child, tag){
 	database.ref(child+'/Hashtags/Others').child(tag).set(1);
 	searchtags(child);
-	
+
 }
 
-	
-	
-	
+
+
+
 var search_button  = document.getElementById("searchbutton");
 search_button.onclick = function(){answerclick()};
 
