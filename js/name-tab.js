@@ -161,7 +161,7 @@ document.getElementById("elements").innerHTML = "";
 				for(var i=0;i<everytags.length;i++){
 				//top rank랑 겹치면 안넣어줌
 					if(everytags[i] != toprank[0] && everytags[i] != toprank[1] && everytags[i] != toprank[2]){
-						buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + everytags[i]+ '<img src="./img/profile.png" height="16" width="16">'+32+'</button>';
+						buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + everytags[i]+ '<img src="./img/profile.png" height="16" width="16">'+1+'</button>';
 					}
 					else continue;
 				}
