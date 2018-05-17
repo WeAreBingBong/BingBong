@@ -1,7 +1,10 @@
 // JavaScript Document
- $(window).load(function(){        
-   $('#id01').modal('show');
-    }); 
+
+	console.log('??')
+$(document).ready(function() {
+	      
+   //$('#id01').modal('show');
+   console.log('??')
 var options = document.getElementById('sel1');
 	var result = "<option>No country</option>";
 	var i = 0;
@@ -9,3 +12,4 @@ var options = document.getElementById('sel1');
 		result = result+"<option>"+pairs[i].country + "</option>";
 	}
 	options.innerHTML = result
+});
