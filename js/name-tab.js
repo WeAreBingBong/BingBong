@@ -146,48 +146,109 @@ document.getElementById("elements").innerHTML = "";
           //tagclick[i].setAttribute("id", "clickedone");
           //document.getElementById("clickedone").style.height = "100px";
 					return function() {
-            console.log(i);
-						console.log(toprank[i]);
+            //console.log(i);
+						//console.log(toprank[i]);
             var a = toprank[i];
             var dbTestRef = database.ref(name+'/Hashtags/ca')
+            //console.log(this.style.backgroundColor);
             //라이크 숫자 업뎃하는 코드
+            var arr = [];
             dbTestRef.once('value', function(data){
               //console.log(toprank[i]);
               var likes = data.child(toprank[i]).val();
-              console.log(likes);
+              arr.push(likes);
+              //console.log(arr[0]);
+              //console.log(likes);
               firebase.database().ref(name+'/Hashtags/ca/'+a).set(likes+1);
-              console.log(tagclick[i]);
+              //console.log(tagclick[i]);
               //$(this).css('background-color', 'red');
-              //tagclick[i] = '<button class="hashb" id="clickedone"  style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+topranktag[i]+1+'</button>';
-              //this.style.height = "100px";
               //document.getElementById('clickedone').style.backgroundColor="black";
               //return(data.child(tag).val());
             })
+            //console.log(arr[0]);
+            this.style.backgroundColor = "yellow";
+            //console.log(tagclick[i].innerHTML.length);
+            //  console.log(tagclick[i].innerHTML[-1]);
+            var str = "";
+            for (var j = 0; j < tagclick[i].innerHTML.length-2; j++){
+              str += tagclick[i].innerHTML[j];
+            }
+            var b = arr[0] + 1;
+            //console.log(str);
+            tagclick[i].innerHTML = str + b;
+
 						//console.log(likes);
 
             //dbTestRef.update({
             //  a : likes + 1
             //})
 					};
-				}) (i), false);
+          }) (i), false);
 
 			};
       //tagclick[i]= '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+topranktag[i]+'</button>';
-
 
 			document.getElementById("morebut").onclick = function() {
 				var addinput = '<input id = "input2" class = "adding" type="text" placeholder="Add Hashtag ex) spicy, salty">';
 
 				for(var i=0;i<everytags.length;i++){
 				//top rank랑 겹치면 안넣어줌
+          var dbTestRef = database.ref(name+'/Hashtags/ca')
+          var arr = [];
+          dbTestRef.once('value', function(data){
+              var likes = data.child(everytags[i]).val();
+              arr.push(likes);
+            })
 					if(everytags[i] != toprank[0] && everytags[i] != toprank[1] && everytags[i] != toprank[2]){
-						buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + everytags[i]+ '<img src="./img/profile.png" height="16" width="16">'+1+'</button>';
+						buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + everytags[i]+ '<img src="./img/profile.png" height="16" width="16">'+arr[0]+'</button>';
 					}
 					else continue;
 				}
 				document.getElementById("elements").innerHTML = name_img+ '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">All Hashtags </h4><div class = "make-margin">' +buttons2+ addinput+putButton +more_button+'</div></div>';
-				document.getElementById("morebut").style.height = "0px";
-				document.getElementById("morebut").style.width = "0px";
+				document.getElementById("morebut").style.display = 'none';
+
+        var tagclick = document.getElementsByClassName("hashb");
+
+        //위에꺼처럼 노란색 되게
+  			for (var i = 0; i < tagclick.length; i++) {
+          tagclick[i].addEventListener('click', (function(i) {
+  					return function() {
+              var strr = "";
+              for(var k=0; k<tagclick[i].innerHTML.length; k++){
+                if(tagclick[i].innerHTML[k] != "<"){
+                  strr += tagclick[i].innerHTML[k];
+                }
+                else break;
+              }
+              // 이게 태그 이름이 됨 이제ㅋㅋ console.log(strr);
+              var dbTestRef = database.ref(name+'/Hashtags/ca')
+              //라이크 숫자 업뎃하는 코드
+              var arr = [];
+              dbTestRef.once('value', function(data){
+                var likes = data.child(strr).val();
+                arr.push(likes);
+                firebase.database().ref(name+'/Hashtags/ca/'+strr).set(likes+1);
+              })
+              this.style.backgroundColor = "yellow";
+              var str = "";
+              var iter = 0;
+              if (i<3){
+                iter = tagclick[i].innerHTML.length-2;
+                var b = arr[0] +1;
+              }
+              else{
+                iter = tagclick[i].innerHTML.length-1;
+                var b = arr[0]+1;
+              }
+              for (var j = 0; j < iter; j++){
+                str += tagclick[i].innerHTML[j];
+              }
+              tagclick[i].innerHTML = str + b;
+  					};
+            }) (i), false);
+
+  			};
+
 
 
 				var put_Button = document.getElementById("put");
