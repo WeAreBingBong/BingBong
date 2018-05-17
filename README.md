@@ -11,7 +11,7 @@ They can share their reviews of dishes with this application.
 
 There are two sepearted tab.
 
-# Search dish tab
+### Search dish tab
 This tab is for searching dishes and make reviews. 
 This is the manual.
 
@@ -22,7 +22,7 @@ This is the manual.
 5. If you want to make new tags(reviews), enter your tag name inside of the input box and press the plus button.
 
 
-# Hashtag search tab
+### Hashtag search tab
 This tab is for searching hashtags and find dishes that fit ti them.
 This is the manual.
 
