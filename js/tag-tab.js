@@ -13,6 +13,7 @@ function searchtags(){
 				//console.log(child.val().Hashtags);
 				var flag =  [];
 				var toprank = ["","",""];
+				var topranktag = [0,0,0];
 				for(var obj in child.val().Hashtags)
 				{
 					//console.log(child.val().Hashtags[obj]);
@@ -97,6 +98,8 @@ function searchtags(){
 												'</button>  &nbsp';
 							}
 					}
+
+
 				toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2 +'</div></div>';
 				document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+ hashtagbutton+toprankbutton;
 

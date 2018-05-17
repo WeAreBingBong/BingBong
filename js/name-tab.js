@@ -130,6 +130,8 @@ document.getElementById("elements").innerHTML = "";
 
                      }
                }
+
+
 			var tempb = buttons2;
 			var more_button = '<button class = "more" id="morebut"></button>';
             toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2+ " " +more_button+'</div></div>';
