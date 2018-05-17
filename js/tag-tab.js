@@ -33,6 +33,7 @@ function searchtags(){
 							if(toprank[0] == "")
 							{
 								toprank[0] = element;
+								topranktag[0] = child.val().Hashtags[obj][element];
 
 							}
 							else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[0]])
@@ -41,12 +42,18 @@ function searchtags(){
 									toprank[0] = element;
 									toprank[2] = toprank[1];
 									toprank[1] = tmp;
+									
+									var tmptag = topranktag[0];
+									topranktag[0] = child.val().Hashtags[obj][element];
+									topranktag[2] = topranktag[1];
+									topranktag[1] = tmptag;
 								}
 							else
 							{
 								if(toprank[1] == "")
 								{
 									toprank[1] = element;
+									topranktag[1] = child.val().Hashtags[obj][element];
 
 								}
 								else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[1]])
@@ -54,6 +61,10 @@ function searchtags(){
 									var tmp = toprank[1];
 									toprank[1] = element;
 									toprank[2] = tmp;
+									
+									var tmptag = topranktag[1];
+									topranktag[1] = child.val().Hashtags[obj][element];
+									topranktag[2] = tmptag;
 
 								}
 								else
@@ -61,12 +72,14 @@ function searchtags(){
 									if(toprank[2] == "")
 									{
 										toprank[2] = element;
+										topranktag[2] = child.val().Hashtags[obj][element];
 
 									}
 									else if(child.val().Hashtags[obj][element] > child.val().Hashtags[obj][toprank[2]])
 									{
 
 										toprank[2] = element;
+										topranktag[2] = child.val().Hashtags[obj][element];
 									}
 								}
 							}
@@ -91,11 +104,11 @@ function searchtags(){
 						if(toprank[i] != "")
 							{
 								buttons2 += ' <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">'
-								 				+ toprank[i]+ '<br/>'+
+								 				+ toprank[i]+
 												////여기ㅣ기기기건드렸음!!!!!!
 												'<img src="./img/profile.png" height="16" width="16">'
-												+ 32  + //  숫자
-												'</button>  &nbsp';
+												+ topranktag[i]  + //  숫자
+												'</button>';
 							}
 					}
 
