@@ -31,14 +31,53 @@
     position: absolute;
     top: 2%;
     left: 2%;
-    background-color:skyblue;
-    border-color:blue;
-    font-size:40px;]
-    color:white;
-    border-radius:5px;
+    	display: inline-block;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	color: #fff;
+	background-color: #3b3334;
+	background-image: -webkit-linear-gradient(top, #483e40, #3a3133);
+	padding: 12px 20px;
+
+	text-align: center;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+	border: 2px solid #5f5255;
+	box-shadow: 0 4px 0 #282425, 0 0 6px #282425, 1px 1px 0px #282425, -1px -1px 0px #282425, 0px 8px 10px rgba(0, 0, 0, .5);
     
 }
+.getstarted2{
+    
+    position: absolute;
+    top: 60%;
+    left: 25%;
+    	display: inline-block;
 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 60px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	color: #fff;
+	background-color: #3b3334;
+	background-image: -webkit-linear-gradient(top, #483e40, #3a3133);
+	padding: 12px 20px;
+
+	text-align: center;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+	border: 2px solid #5f5255;
+	box-shadow: 0 4px 0 #282425, 0 0 6px #282425, 1px 1px 0px #282425, -1px -1px 0px #282425, 0px 8px 10px rgba(0, 0, 0, .5);
+    
+}
 /* Position the "next button" to the right */
 .next {
 
@@ -70,6 +109,8 @@
 
 /* The dots/bullets/indicators */
 .dot {
+	position: absolute;
+    bottom: 10%;
   cursor: pointer;
   height: 15px;
   width: 15px;
