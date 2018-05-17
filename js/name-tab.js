@@ -11,7 +11,7 @@ var putButton = '<button class = "foradd" id="put"></button>';
 
 
 function categoryOfTag(child, tag) {
-  dishes.on('value',function(snapshot){
+  dishes.once('value',function(snapshot){
      snapshot.forEach(function(child){
        var category="";
        for(var obj in child.val().Hashtags)
@@ -126,7 +126,7 @@ document.getElementById("elements").innerHTML = "";
                {
                   if(toprank[i] != "")
                      {
-                        buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+topranktag[i]+'</button>';
+                        buttons2 += '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;" value=' + toprank[i] + topranktag[i].toString()+ '>' + toprank[i]+ '<img src="./img/profile.png" height="16" width="16">'+topranktag[i]+'</button>';
 
                      }
                }
@@ -144,13 +144,16 @@ document.getElementById("elements").innerHTML = "";
 				tagclick[i].addEventListener('click', (function(i) {
 					return function() {
 						console.log(i);
-						var cat = categoryOfTag(child, tagclick[i]);
+
+            console.log(tagclick[i].value);
+            //child.val().Hashtags[ca][]
+            /*
 						console.log(cat);
 						getnum(name, tagclick[i], cat);
             var dbTestRef = database.ref(name+'/Hashtags/'+cat);
             dbTestRef.update({
               //tagclick[i]: getnum(name, tagclikc[i], cat)-1;
-            })
+            })*/
 					};
 				})(i), false);
 			};
@@ -220,6 +223,10 @@ $(document).ready(function(){
 	//console.log($('div.card__title').length);
 
 });
+
+
+  //Erase this for last commit
+  answerclick("Gamjatang");
 });
 
 
