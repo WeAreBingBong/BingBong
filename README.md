@@ -23,7 +23,7 @@ This is the manual.
 
 
 ### Hashtag search tab
-This tab is for searching hashtags and find dishes that fit ti them.
+This tab is for searching hashtags and find dishes that fit to them.
 This is the manual.
 
 1. Search the hashtag.
