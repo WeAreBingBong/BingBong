@@ -26,6 +26,18 @@
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
 }
+.getstarted {
+    
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    background-color:skyblue;
+    border-color:blue;
+    font-size:40px;]
+    color:white;
+    border-radius:5px;
+    
+}
 
 /* Position the "next button" to the right */
 .next {
