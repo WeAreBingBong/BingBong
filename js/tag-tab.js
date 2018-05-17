@@ -116,7 +116,7 @@ $(document).ready(function(){
 	dishes = database.ref();
 	searchtags();
 
-	dishes.on('value',function(snapshot){
+	dishes.once('value',function(snapshot){
 		snapshot.forEach(function(child){
 
 			if(child.key == "All")
