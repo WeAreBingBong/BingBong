@@ -5,9 +5,14 @@ var tags= [];
 var database;
 var dishes;
 	var tagsauto = [];
+var putButton = '<button class = "foradd" id="put"></button>';
+var results=0;
 function searchtags(){
+
+	results = 0;
 	document.getElementById("elements").innerHTML = "";
 	dishes.once('value',function(snapshot){
+
 
 		snapshot.forEach(function(child){
 				//console.log(child.val().Hashtags);
@@ -87,6 +92,8 @@ function searchtags(){
 				}
 			if(flag.length == tags.length && flag.length != 0)
 			{
+				
+				results+=1;
 				var buttons = "";
 				for(var i=0;i<tags.length;i++)
 					{
@@ -95,7 +102,7 @@ function searchtags(){
 				//console.log(child.val().image);
 				// Adding Hashtag
 				/*var hashtagbutton = '&nbsp<div class = "pannel panel-info" style="margin-top: 2px;margin-bottom: 2px; margin-right: 2px; margin-left: 10px; border:1px solid #bce8f1; border-radius: 5px;" ><div class = "panel-heading"><h4>'+child.key+'</h4></div><div class = "panel-body"><img src='+child.val().image +' width="200" class = "pull-left"><div class = "container" ><h4 class = "make-margin">Searching Hashtags </h4><div class = "make-margin">' +buttons +'</div></div>';*/
-				var hashtagbutton = '&nbsp<div class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
+				var hashtagbutton = '&nbsp<div style="margin-top:10px;"class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
 				// Adding Top Rank Hashtag
 				var buttons2=""
 				var toprankbutton="";
@@ -112,16 +119,31 @@ function searchtags(){
 							}
 					}
 
+				
 
-				toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2 +'</div></div>';
-				document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+ hashtagbutton+toprankbutton;
+			
+				var name_img = '&nbsp<div class="card"><h2 class="card__title" style="font-family: Quicksand; font-size:21px; font-weight:bold; ">'+child.key+'</h2><div class="card__content"><img src='+child.val().image +' width="180" class = "pull-left">';
+				
+				var tempb = buttons2;
+				var more_button = '<button class = "more" id="morebut"></button>';
+            	toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2+ " " +more_button+'</div></div>';
 
+            	document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+name_img+toprankbutton;
 			}
-			});
-		});
+
+    	});
+	if(results == 0)
+	{
+		document.getElementById("elements").innerHTML = '<div style="color:gray; margin-top:10px;">&nbsp&nbspNo Results</div>';
+	}
+	});
+	
+	
+	
+	
 }
 // Initialize Firebase
-
+			
 $(document).ready(function(){
   var config = {
     apiKey: "AIzaSyDm03A2zOboq6VbKBq4QC2e1xiTsc4ADjg",
@@ -130,7 +152,7 @@ $(document).ready(function(){
   firebase.initializeApp(config);
   database = firebase.database();
 	dishes = database.ref();
-	searchtags();
+	//searchtags();
 
 	dishes.once('value',function(snapshot){
 		snapshot.forEach(function(child){
@@ -176,7 +198,8 @@ $( "#input1" ).autocomplete({
     });
 
 var search_button  = document.getElementById("searchbutton");
-search_button.onclick = function(){answerclick(document.getElementById("input1").value)};
+search_button.onclick = function(){
+	answerclick(document.getElementById("input1").value)};
 
 function answerclick(value)
 {
@@ -193,9 +216,14 @@ function answerclick(value)
 	{
 	tags.push(value);
 
+
+		
+		
+
+
 	if(tags.length == 1)
 	{
-
+		document.getElementById("tagpanel").innerHTML=document.getElementById("tagpanel").innerHTML+'<button id="clearbutton" class="clearb" onclick="allclear()">all clear</button>';
 		paragraph.innerHTML = "";
 		 paragraph.innerHTML = '<button class="tagb hashb" ;>' + value +"&nbsp" +'<i class="deletebutton far fa-times-circle" onclick = "deleted(this.parentNode)"></i>'  + "</button>";
 	}
@@ -212,6 +240,14 @@ document.getElementById("input1").onclick = function(){
 	document.getElementById("input1").value = "";
 };
 
+function allclear(){
+	document.getElementById("in-panel").innerHTML = "hashtags will be here.";
+	tags = [];
+	document.getElementById("clearbutton").parentNode.removeChild(document.getElementById("clearbutton"));
+	document.getElementById("input1").value = "";
+	document.getElementById("elements").innerHTML = "";
+
+}
 
 function deleted(node1){
 	var value = node1.innerHTML.split("&nbsp")[0];
@@ -221,8 +257,18 @@ function deleted(node1){
             break;
         }
     }
+    if(value == document.getElementById("input1").value)
+    {
+    	document.getElementById("input1").value="";
+    }
 	node1.parentNode.removeChild(node1);
 	searchtags();
+	if(tags.length == 0)
+	{
+		document.getElementById("in-panel").innerHTML = "hashtags will be here.";
+		document.getElementById("clearbutton").parentNode.removeChild(document.getElementById("clearbutton"));
+		document.getElementById("elements").innerHTML="";
+	}
 }
 searchtags();
 
