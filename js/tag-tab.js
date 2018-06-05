@@ -132,7 +132,7 @@ function searchtags(){
 			}
 
     	});
-	if(results == 0)
+	if(results == 0 && tags.length !=0)
 	{
 		document.getElementById("elements").innerHTML = '<div style="color:gray; margin-top:10px;">&nbsp&nbspNo Results</div>';
 	}
