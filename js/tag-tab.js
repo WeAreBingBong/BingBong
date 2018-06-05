@@ -110,12 +110,13 @@ function searchtags(){
 					{
 						if(toprank[i] != "")
 							{
-								buttons2 += ' <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">'
+								var tmp = '<button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;" onclick="hashclick(this)">'
 								 				+ toprank[i]+
 												////여기ㅣ기기기건드렸음!!!!!!
 												'<img src="./img/profile.png" height="16" width="16">'
 												+ topranktag[i]  + //  숫자
 												'</button>';
+								buttons2 += tmp;
 							}
 					}
 
@@ -127,7 +128,7 @@ function searchtags(){
 				var tempb = buttons2;
 				var more_button = '<br><i class="fa fa-caret-square-down" id="morebut" onclick="showmore(this.parentNode.parentNode.parentNode)" style = "color:gray;font-size:30px;"></i>';
 				
-            	toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2+ " " +more_button+'</div></div>';
+            	toprankbutton = '<h4 class = "make-margin" style="font-family: Quicksand; font-size:16px;">Top Rank Hashtags </h4><div class = "make-margin">' +buttons2+more_button+'</div></div>';
 
             	document.getElementById("elements").innerHTML=document.getElementById("elements").innerHTML+name_img+toprankbutton;
 			}
@@ -202,33 +203,107 @@ function showmore(node1)
 {
 	//버튼을 누른 음식 이름
 	var toprank = [];
+	//console.log(node1.childNodes[1].childNodes[2].childNodes[0]);
+	toprank.push(node1.childNodes[1].childNodes[2].childNodes[0].innerHTML.split('<img')[0]);
 	toprank.push(node1.childNodes[1].childNodes[2].childNodes[1].innerHTML.split('<img')[0]);
-	toprank.push(node1.childNodes[1].childNodes[2].childNodes[3].innerHTML.split('<img')[0]);
-	toprank.push(node1.childNodes[1].childNodes[2].childNodes[5].innerHTML.split('<img')[0]);
+	toprank.push(node1.childNodes[1].childNodes[2].childNodes[2].innerHTML.split('<img')[0]);
 	
 	node1.childNodes[1].childNodes[1].innerHTML = "All Hashtags";
 
-	//console.log(node1.childNodes[1].childNodes[2].childNodes[7]);
-	node1.childNodes[1].childNodes[2].removeChild(node1.childNodes[1].childNodes[2].childNodes[7]);
-	node1.childNodes[1].childNodes[2].removeChild(node1.childNodes[1].childNodes[2].childNodes[7]);
+	//console.log(node1.childNodes[1].childNodes[2].childNodes[3]);
+	node1.childNodes[1].childNodes[2].removeChild(node1.childNodes[1].childNodes[2].childNodes[3]);
+	node1.childNodes[1].childNodes[2].removeChild(node1.childNodes[1].childNodes[2].childNodes[3]);
 	var name = node1.childNodes[0].innerHTML;
 	var nameRef = database.ref(name+'/Hashtags/ca')
-	var addedhashtags
+
 	nameRef.once('value',function(snapshot){
 		snapshot.forEach(function(child){
 			if(child.key != toprank[0] && child.key != toprank[1] && child.key != toprank[2])
 			{	
-				node1.childNodes[1].childNodes[2].innerHTML = node1.childNodes[1].childNodes[2].innerHTML + ' <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;">'+child.key+'<img src="./img/profile.png" height="16" width="16">'+child.val()+'</button>';
+				node1.childNodes[1].childNodes[2].innerHTML = node1.childNodes[1].childNodes[2].innerHTML + ' <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand;" onclick="hashclick(this)">'+child.key+'<img src="./img/profile.png" height="16" width="16">'+child.val()+'</button>';
 			}
 		});
 	});
 
-	var addinput = '<input id = "input2" style = "width:270px; height:40px;"class = "adding" type="text" placeholder="Add Hashtag ex) spicy, salty"></input><i style = "font-size: 30px; color:gray ;margin-left:10px; margin-top:5px;"class = "fa fa-plus-square" id="put"></i><i style = "font-size: 30px; color:gray ;margin-left:10px; margin-top:5px;" class = "make-margin fa fa-caret-square-up" </i>';
+	var addinput = '<input id = "input2" style = "width:270px; height:40px;"class = "adding" type="text" placeholder="Add Hashtag ex) spicy, salty"></input><i style = "font-size: 30px; color:gray ;margin-left:10px; margin-top:5px;"class = "fa fa-plus-square" id="put" onclick="addnewhash(this.parentNode.parentNode)"></i><i style = "font-size: 30px; color:gray ;margin-left:10px; margin-top:5px;" class = "make-margin fa fa-caret-square-up" onclick = "fold(this.parentNode.parentNode)"></i>';
 	
 
 	node1.childNodes[1].innerHTML = node1.childNodes[1].innerHTML+addinput;
 }
 
+function addnewhash(node)
+{
+	var name = node.childNodes[0].innerHTML;
+	var tag = node.childNodes[1].childNodes[3].value;
+	node.childNodes[1].childNodes[3].value="";
+	if(tag != "")
+	{
+		var flag = 0;
+		var nameRef = database.ref(name+'/Hashtags/ca');
+		/*nameRef.once('value',function(snapshot){
+		snapshot.forEach(function(child){
+
+			if(child.key == tag)
+			{	
+				console.log(child.val())
+				nameRef.child(tag).set(child.val()+1)
+				flag = 1;
+			}
+		});
+		if(flag == 0)
+		{*/
+			nameRef.child(tag).set(1);
+			node.childNodes[1].childNodes[2].innerHTML = node.childNodes[1].childNodes[2].innerHTML + ' <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand; background-color:yellow;" onclick="hashclick(this)">'+tag+'<img src="./img/profile.png" height="16" width="16">'+"1"+'</button>';
+		//}
+
+	}
+	
+	//ode1.childNodes[1].childNodes[2].innerHTML = node1.childNodes[1].childNodes[2].innerHTML + ' <button class="hashb yellow" style="margin-bottom : 5px; font-family: Quicksand;" onclick="hashclick(this)">'+child.key+'<img src="./img/profile.png" height="16" width="16">'+"1"+'</button>';
+	//console.log(tag);
+}
+
+function hashclick(node)
+{	
+	//console.log(node);
+	if(node.style.backgroundColor!="yellow")
+	{
+		node.style.backgroundColor="yellow";
+		//console.log(node.innerHTML.split('>')[1])
+		var added = parseInt(node.innerHTML.split('>')[1])+1;
+		node.innerHTML=node.innerHTML.split('>')[0]+'>'+added;
+		//console.log(node.parentNode.parentNode.parentNode);
+		var node1 = node.parentNode.parentNode.parentNode;
+		var name = node1.childNodes[0].innerHTML;
+		var nameRef = database.ref(name+'/Hashtags/ca');
+
+		var tagname = node.innerHTML.split('<img')[0];
+
+		nameRef.child(tagname).set(added);
+	}
+	
+
+}
+
+function fold(node)
+{
+	var more_button = '<br><i class="fa fa-caret-square-down" id="morebut" onclick="showmore(this.parentNode.parentNode.parentNode)" style = "color:gray;font-size:30px;"></i>';
+	//console.log(node.childNodes[1].childNodes[2]);
+	var name = node.childNodes[0].innerHTML;
+	node.childNodes[1].childNodes[1].innerHTML = "Top Rank Hashtags";
+	var toprank = [];
+	toprank[0] = node.childNodes[1].childNodes[2].childNodes[0];
+	toprank[1] = node.childNodes[1].childNodes[2].childNodes[1];
+	toprank[2] = node.childNodes[1].childNodes[2].childNodes[2];
+	node.childNodes[1].childNodes[2].innerHTML="";
+	node.childNodes[1].childNodes[2].appendChild(toprank[0]);
+	node.childNodes[1].childNodes[2].appendChild(toprank[1]);
+	node.childNodes[1].childNodes[2].appendChild(toprank[2]);
+	node.childNodes[1].childNodes[2].innerHTML = node.childNodes[1].childNodes[2].innerHTML + more_button;
+	console.log(node.childNodes[1].childNodes[3]);
+	node.childNodes[1].removeChild(node.childNodes[1].childNodes[3]);
+	node.childNodes[1].removeChild(node.childNodes[1].childNodes[3]);
+	node.childNodes[1].removeChild(node.childNodes[1].childNodes[3]);
+}
 
 var search_button  = document.getElementById("searchbutton");
 search_button.onclick = function(){
