@@ -265,9 +265,9 @@ function addnewhash(node)
 function hashclick(node)
 {	
 	//console.log(node);
-	if(node.style.backgroundColor!="yellow")
+	if(node.style.backgroundColor!="lightgray")
 	{
-		node.style.backgroundColor="yellow";
+		node.style.backgroundColor="lightgray";
 		//console.log(node.innerHTML.split('>')[1])
 		var added = parseInt(node.innerHTML.split('>')[1])+1;
 		node.innerHTML=node.innerHTML.split('>')[0]+'>'+added;
