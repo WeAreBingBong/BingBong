@@ -253,7 +253,7 @@ function addnewhash(node)
 		if(flag == 0)
 		{*/
 			nameRef.child(tag).set(1);
-			node.childNodes[1].childNodes[2].innerHTML = node.childNodes[1].childNodes[2].innerHTML + ' <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand; background-color:yellow;" onclick="hashclick(this)">'+tag+'<img src="./img/profile.png" height="16" width="16">'+"1"+'</button>';
+			node.childNodes[1].childNodes[2].innerHTML = node.childNodes[1].childNodes[2].innerHTML + ' <button class="hashb" style="margin-bottom : 5px; font-family: Quicksand; background-color:lightgray;" onclick="hashclick(this)">'+tag+'<img src="./img/profile.png" height="16" width="16">'+"1"+'</button>';
 		//}
 
 	}
